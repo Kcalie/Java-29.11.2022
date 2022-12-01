@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiation à javascript</title>
+</head>
+<body onunload="verifierage();"> <!-- onload="verifierage();" afficher au chargement de la page fonctionne avec ligne 108 onunload ne fonctionne pas-->
+    <script language="Javascript">
+    /*  var prenom_utilisateur = "Kevin";
+        var nom_utilisateur = "Haraux ";
+        var age_utilisateur = "inconnu";
+        var message = ' Bonjour '+prenom_utilisateur+' '+nom_utilisateur;
+        document.write(message);
+        var mon_tableau = new Array(11);
+        mon_tableau[0] = 'Angéline';
+        mon_tableau[1] = 'Maxime';
+        mon_tableau[2] = 'Jessica';
+        mon_tableau[3] = 'Joseph';
+        mon_tableau[4] = 'Gérald';
+        mon_tableau[5] = 'Geoffrey';
+        mon_tableau[6] = 'Emilie';
+        mon_tableau[7] = 'Philémon';
+        mon_tableau[8] = 'Francisco';
+        mon_tableau[9] = 'Amélie';
+        mon_tableau[10] = 'Kévin';
+        console.log(mon_tableau);
+        var mon_tableau2 = new Array('Angéline','Maxime','Jessica','Kévin','Joseph','Gérald','Geoffrey','Emilie','Philémon','Francisco','Amélie');
+        console.log(mon_tableau2);
+        // le morpion
+        var row0= new Array; // la majuscule est important
+        row0[0]="0";
+        row0[1]="X";
+        row0[2]=" ";
+        var row1= new Array;
+        row1[0]="X";
+        row1[1]="0";
+        row1[2]="X";
+        var row2= new Array;
+        row2[0]=" ";
+        row2[1]="0";
+        row2[2]="X";
+        // on enregistre tout dans array morpion
+        var morpion= new Array;
+        morpion[0]= row0;
+        morpion[1]= row1;
+        morpion[2]= row2;
+        // on affiche dans la console
+        console.log(morpion);
+        // jouons avec les dates !!
+        var dt = new Date();
+        var jour = dt.getDay();
+        var numero = dt.getDate();
+        var mois = dt.getMonth();
+        // Tableau pour les jours (on va remplacer 0 par dimanche, 1par lundi etc...)
+        var tab_jour = new Array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi', 'Dimanche')
+        // Tableau pour les mois (on va remplacer 0 janvier etc....)
+        var tab_mois = new Array('Janvier','Fevrier','Mars','Avril','Mai','Juin','Juillet','Aout','Septembre','Novembre','Decembre')
+
+        document.write("Nous sommes le "+tab_jour[jour]+" "+numero+" "+tab_mois[mois]);
+
+        // amusement (alerte et confirm pour ne pas que un truc ne plus afficher la page s'affiche)
+        for(i=0;i<=5000;i++){
+            if(confirm('etes vous sur de vouloir continuer ?')){
+                i=0;
+                alert('Vous êtes fou !!!');
+            }else {
+                i=5001;//a la place de return false
+            }
+        }*/
+
+        // Notre petite calculatrice
+        function addition() {
+            var nombre1 = document.getElementById('nombre1').value;
+            var nombre2 = document.getElementById('nombre2').value;
+            var operation = (parseFloat(nombre1)+parseFloat(nombre2));
+            let dateCookie = new Date(Date.now()+8640000);
+            dateCookie = dateCookie.toUTCString();
+            document.cookie = "resultat="+operation+";path=;expires="+dateCookie;
+            if(isNaN(operation)){// affiche message d'erreur
+                alert('operation impossible');
+            } else{
+            document.getElementById('resultat').innerHTML = operation;
+            }
+
+        }
+        function soustraction() {
+            var nombre1 = document.getElementById('nombre1').value;
+            var nombre2 = document.getElementById('nombre2').value;
+            var operation = (parseFloat(nombre1)-parseFloat(nombre2));
+            document.getElementById('resultat').innerHTML = operation;
+        }
+        function multiplication() {
+            var nombre1 = document.getElementById('nombre1').value;
+            var nombre2 = document.getElementById('nombre2').value;
+            var operation = (parseFloat(nombre1)*parseFloat(nombre2));
+            document.getElementById('resultat').innerHTML = operation;
+        }
+        function division() {
+            var nombre1 = document.getElementById('nombre1').value;
+            var nombre2 = document.getElementById('nombre2').value;
+            var operation = (parseFloat(nombre1)/parseFloat(nombre2));// parseFloat avec virgule autorisé parseInt sans virgule
+            document.getElementById('resultat').innerHTML = operation;
+        }
+        function Francois(){
+            var element = document.getElementById('hollande').value;
+            console.log(element);
+            document.body.style.background = element;
+        }
+        function verifierage() {
+            let age = prompt('quel age avez vous ?');
+            if(age >= 18){
+                alert('ok vous pouvez consultez le site');
+            }
+            else{
+                window.location='https://www.google.fr';// window.location pour rediriger vers un autres pages
+            }
+            
+        }
+
+    </script>
+    
+        <p>
+            <label>Nombre 1</label>
+            <input type="text" name="nombre1" id="nombre1" />
+        </p>
+        <p>
+            <label>Nombre 2</label>
+            <input type="text" name="nombre2" id="nombre2" />
+        </p>
+        <p>
+            <input type="button" name="addition" value="+" onclick="addition();" />
+            <input type="button" name="soustraction" value="-" onclick="soustraction();" />
+            <input type="button" name="multiplication" value="*" onclick="multiplication();" />
+            <input type="button" name="division" value="/" onclick="division();" />
+        </p>
+
+    <p id="resultat"></p>
+
+    <p>
+        <label>Le changement c'est maintenant</label>
+        <select name="hollande" id="hollande" onchange="Francois()">
+        <option value="">Choisir</option>
+        <option value="#FF0000">Rouge</option>
+        <option value="#000000">Noir</option>
+        <option value="#0027FF">Bleue</option>
+        </select>
+    </p>
+    <script language="Javascript">
+        let calculetteForm = document.forms.calculette;
+        console.log(calculetteForm);
+        calculetteForm.elements.nombre1.placeholder="Entrer un nombre";
+        calculetteForm.elements.nombre2.placeholder="Entrer un 2eme nombre";
+        calculetteForm.elements.nombre2.style.background="#FF0000";
+    </script>
+
+
+
+</body>
+</html>
